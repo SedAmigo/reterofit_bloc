@@ -25,8 +25,9 @@ class _ApiService implements ApiService {
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
-            headers: <String, dynamic>{},
+            headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
+            contentType: 'application/json',
             baseUrl: baseUrl),
         data: _data);
     var value = _result.data
@@ -64,12 +65,13 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(contact?.toJson() ?? <String, dynamic>{});
     _data.removeWhere((k, v) => v == null);
-    final _result = await _dio.request<Map<String, dynamic>>('$id',
+    final _result = await _dio.request<Map<String, dynamic>>('/$id',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'PUT',
-            headers: <String, dynamic>{},
+            headers: <String, dynamic>{r'Content-Type': 'application/json'},
             extra: _extra,
+            contentType: 'application/json',
             baseUrl: baseUrl),
         data: _data);
     final value = Contacts.fromJson(_result.data);
@@ -82,7 +84,7 @@ class _ApiService implements ApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<Map<String, dynamic>>('$id',
+    final _result = await _dio.request<Map<String, dynamic>>('/$id',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'DELETE',

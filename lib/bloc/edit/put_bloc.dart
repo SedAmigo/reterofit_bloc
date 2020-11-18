@@ -18,7 +18,10 @@ class PutBloc extends Bloc<PutEvent, PutState> {
   ) async* {
     if (event is PutEventLoaded) {
       final putEither = await repository.updateContact(event.id, event.contact);
-      putEither.fold((l) => PutFailed('Error'), (r) => PutSuccess());
+      yield putEither.fold(
+        (l) => PutFailed('Error'),
+        (r) => PutSuccess(),
+      );
     }
   }
 }

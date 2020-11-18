@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:retofit_bloc/data/models/contacts.dart';
 import 'package:retofit_bloc/data/network/urls.dart';
 import 'package:retrofit/http.dart';
@@ -9,6 +9,9 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @GET('')
+   @Headers(<String, dynamic>{
+    "Content-Type": "application/json",
+  })
   Future<List<Contacts>> getContact();
 
   @POST('')
@@ -16,14 +19,17 @@ abstract class ApiService {
     @Body() Contacts contact,
   );
 
-  @PUT('{id}')
+  @PUT('/{id}')
+  @Headers(<String, dynamic>{
+    "Content-Type": "application/json",
+  })
   Future<Contacts> updateContact(
-    @Path() String id,
+    @Path('id') String id,
     @Body() Contacts contact,
   );
 
-  @DELETE('{id}')
+  @DELETE('/{id}')
   Future<Contacts> deleteContact(
-    @Path() String id,
+    @Path('id') String id,
   );
 }

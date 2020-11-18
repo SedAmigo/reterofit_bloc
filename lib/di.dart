@@ -13,7 +13,6 @@ void locator() {
   Dio dio = Dio();
   inject.registerLazySingleton(() => dio);
 
-  // ApiService apiService = ApiService(inject.call());
   inject.registerLazySingleton<ApiService>(() => ApiService(inject()));
 
   inject.registerLazySingleton<ContactRepository>(
@@ -38,12 +37,6 @@ void locator() {
       inject(),
     ),
   );
-
-  // inject.registerLazySingleton(
-  //   () => PutCubit(
-  //     inject(),
-  //   ),
-  // );
 
   inject.registerLazySingleton(
     () => DeleteCubit(

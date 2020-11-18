@@ -41,15 +41,13 @@ class ContactForm extends StatefulWidget {
   final Contacts _contacts;
   ContactForm(this._contacts);
   @override
-  _ContactFormState createState() => _ContactFormState(this._contacts);
+  _ContactFormState createState() => _ContactFormState();
 }
 
 class _ContactFormState extends State<ContactForm> {
-  final Contacts contact;
   final _formKey = GlobalKey<FormState>();
   String _name, _age, _job;
 
-  _ContactFormState(this.contact);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,7 @@ class _ContactFormState extends State<ContactForm> {
         padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
         children: [
           TextFormField(
-            initialValue: contact.name,
+            initialValue: widget._contacts.name,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Name',
@@ -78,7 +76,7 @@ class _ContactFormState extends State<ContactForm> {
             height: 12.0,
           ),
           TextFormField(
-            initialValue: contact.age.toString(),
+            initialValue: widget._contacts.age.toString(),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Age',
@@ -97,7 +95,7 @@ class _ContactFormState extends State<ContactForm> {
             height: 12.0,
           ),
           TextFormField(
-            initialValue: contact.job,
+            initialValue: widget._contacts.job,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Job',
@@ -115,17 +113,16 @@ class _ContactFormState extends State<ContactForm> {
           SizedBox(
             height: 12.0,
           ),
-          Text(contact.id),
+          Text(widget._contacts.id),
           Builder(
             builder: (context) => FlatButton(
               child: Text('Edit Contact'),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  Contacts contacts = Contacts(contact.id, _name, _age, _job);
+                  Contacts contacts = Contacts(widget._contacts.id, _name, _age, _job);
                   BlocProvider.of<PutBloc>(context)
-                      .add(PutEventLoaded(contact.id, contacts));
-                  // BlocProvider.of<PutCubit>(context).edit(contact.id, contacts);
+                      .add(PutEventLoaded(widget._contacts.id, contacts));
                   Scaffold.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: Colors.blue,

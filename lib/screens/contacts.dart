@@ -96,11 +96,6 @@ class Contactss extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // child: ListTile(
-                      //   trailing: Text(contacts[index].age),
-                      //   title: Text(contacts[index].name),
-                      //   subtitle: Text(contacts[index].job),
-                      // ),
                     ),
                   );
                 },

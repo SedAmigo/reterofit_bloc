@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
   GetBloc getBloc;
   TrypostBloc trypostBloc;
   PutBloc putBloc;
-  // PutCubit putCubit;
   DeleteCubit deleteCubit;
 
   @override
@@ -29,10 +28,8 @@ class _MyAppState extends State<MyApp> {
     getBloc = inject<GetBloc>();
     getBloc.add(GetLoadedEvent());
     trypostBloc = inject<TrypostBloc>();
-
     putBloc = inject<PutBloc>();
     deleteCubit = inject<DeleteCubit>();
-    // putCubit = inject<PutCubit>();
     super.initState();
   }
 
@@ -42,7 +39,6 @@ class _MyAppState extends State<MyApp> {
     trypostBloc?.close();
     deleteCubit?.close();
     putBloc?.close();
-    // putCubit?.close();
     super.dispose();
   }
 
@@ -51,20 +47,14 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          // lazy: false,
           create: (context) => getBloc,
         ),
         BlocProvider(
-          // lazy: false,
           create: (context) => trypostBloc,
         ),
         BlocProvider(
-          // lazy: false,
           create: (context) => putBloc,
         ),
-        // BlocProvider(
-        //   create: (context) => putCubit,
-        // ),
         BlocProvider(
           create: (context) => deleteCubit,
         ),

@@ -36,5 +36,12 @@ class ContactRepository {
     }
   }
 
-  Future<Contacts> deleteContact(String id) => _apiService.deleteContact(id);
+  Future<Either<AppError, Contacts>> deleteContact(String id) async {
+    try {
+      final delete = await _apiService.deleteContact(id);
+      return Right(delete);
+    } on Exception {
+      return Left(AppError('error message'));
+    }
+  }
 }
