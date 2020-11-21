@@ -20,23 +20,6 @@ class PostScreen extends StatelessWidget {
             );
           } else if (state is TryPostSuccess) {
             return ContactForm();
-            // return Center(
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Text('Success'),
-            //       FlatButton(
-            //         onPressed: () {
-            //           Navigator.pop(
-            //             context,
-            //             'success',
-            //           );
-            //         },
-            //         child: Text('Go Home'),
-            //       ),
-            //     ],
-            //   ),
-            // );
           } else if (state is TryPostFail) {
             return Center(
               child: Text(state.error.toString()),

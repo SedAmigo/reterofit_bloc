@@ -48,13 +48,16 @@ class _ContactFormState extends State<ContactForm> {
   final _formKey = GlobalKey<FormState>();
   String _name, _age, _job;
 
-
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: ListView(
-        padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
+        padding: const EdgeInsets.only(
+          right: 20.0,
+          left: 20.0,
+          top: 20.0,
+        ),
         children: [
           TextFormField(
             initialValue: widget._contacts.name,
@@ -120,7 +123,8 @@ class _ContactFormState extends State<ContactForm> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  Contacts contacts = Contacts(widget._contacts.id, _name, _age, _job);
+                  Contacts contacts =
+                      Contacts(widget._contacts.id, _name, _age, _job);
                   BlocProvider.of<PutBloc>(context)
                       .add(PutEventLoaded(widget._contacts.id, contacts));
                   Scaffold.of(context).showSnackBar(

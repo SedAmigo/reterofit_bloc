@@ -6,6 +6,7 @@ import 'package:retofit_bloc/data/models/contacts.dart';
 import 'package:retofit_bloc/screens/edit_screen.dart';
 import 'package:retofit_bloc/screens/post_Screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:retofit_bloc/screens/sqlite.dart';
 
 class Contactss extends StatelessWidget {
   @override
@@ -25,6 +26,16 @@ class Contactss extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Contacts'),
+        actions: [
+          IconButton(icon: Icon(Icons.ac_unit), onPressed: (){
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SqulieLearn(),
+            ),
+          );
+          }),
+        ],
       ),
       body: BlocBuilder<GetBloc, GetState>(
         builder: (context, state) {
